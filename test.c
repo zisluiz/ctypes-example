@@ -13,4 +13,3 @@ void doubleme(double *A, int n)
     for(i = 0; i < n; i++)
         A[i]*=2;
 }
-
