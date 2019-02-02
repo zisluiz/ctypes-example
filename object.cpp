@@ -1,19 +1,4 @@
-#include <string>
-#include <iostream>
-#include <vector>
-#include "point.cpp"
-
-using namespace std;
-
-class Object
-{
-    public:
-        Object();
-        Object(int id, int pointsLength, Point *points);
-        int id;
-        int pointsLength;
-        Point *points; 
-};
+#include "object.h"
 
 Object::Object() {
 
@@ -61,14 +46,14 @@ extern "C"
         return testArray() ;
     }    
     void Object_cleanup_point(Object* objectToClean) {
-        cout << "cleanup_point called" << endl;
+        printf("cleanup_point called\n");
         if (objectToClean) {
             delete objectToClean;
         }      
     }
 
     void Object_cleanup_ArrayPoint(Object* objectToClean) {
-        cout << "cleanup_point called" << endl;
+        printf("cleanup_ArrayPoint called\n");
         if (objectToClean) {
             delete[] objectToClean;
         }      

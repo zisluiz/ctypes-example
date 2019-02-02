@@ -16,7 +16,7 @@ This example shows how return a Object array with fixed length, as a dynamic Poi
    
 Files to study: object.cpp, point.cpp, object.py
 
-    g++ -shared -fPIC object.cpp -o object.so
+    g++ -shared -fPIC *.cpp -o object.so
     python object.py
 
 About free memory allocations, im not sure if arrays are setting free properly (to be study).

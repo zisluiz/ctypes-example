@@ -1,16 +1,4 @@
-#include <string>
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
-class Point
-{
-    public:
-        Point();
-        Point(int x, int y, int z);
-        int x,y,z;
-};
+#include "point.h"
 
 Point::Point() {
 }
