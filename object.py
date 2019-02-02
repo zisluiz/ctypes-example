@@ -22,8 +22,8 @@ def setup_lib(lib_path):
     lib.Object_test.restype = ctypes.POINTER(Object) 
     lib.Object_testArray.restype = ctypes.POINTER(Object * 3)
 
-    lib.Object_cleanup_point.argtypes = [ctypes.POINTER(Object)]
-    lib.Object_cleanup_ArrayPoint.argtypes = [ctypes.POINTER(Object)]    
+    lib.Object_cleanup_object.argtypes = [ctypes.POINTER(Object)]
+    lib.Object_cleanup_ArrayObject.argtypes = [ctypes.POINTER(Object)]    
 
     return lib
 
@@ -33,7 +33,7 @@ print('id ',objTeste.contents.id)
 print('point x ', objTeste.contents.points.contents.x)
 print('point y ', objTeste.contents.points.contents.y)
 print('point z ', objTeste.contents.points.contents.z)
-lib.Object_cleanup_point(objTeste)
+lib.Object_cleanup_object(objTeste)
 
 array = lib.Object_testArray()
 print('Printing array')
@@ -43,4 +43,4 @@ for obj in array.contents:
     for i in range(obj.pointsLength):
         print(i, obj.points[i].x, obj.points[i].y, obj.points[i].z)
     
-lib.Object_cleanup_ArrayPoint(array.contents)
+lib.Object_cleanup_ArrayObject(array.contents)

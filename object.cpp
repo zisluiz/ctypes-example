@@ -12,7 +12,7 @@ Object::Object(int id, int pointsLength, Point *points)
 }
 
 static Object* testArray() {
-    printf("Calling method\n");
+    printf("Calling testArray method\n");
     Object *objs = new Object[3];
 
     Point *points1 = new Point[3];
@@ -31,7 +31,7 @@ static Object* testArray() {
     objs[0] = Object(1, 3, points1);
     objs[1] = Object(2, 3, points2);
     objs[2] = Object(3, 3, points3);
-    printf("Returning calling method\n");
+    printf("Returning testArray method\n");
     return objs;
 } 
 
@@ -45,17 +45,29 @@ extern "C"
     Object* Object_testArray() {      
         return testArray() ;
     }    
-    void Object_cleanup_point(Object* objectToClean) {
-        printf("cleanup_point called\n");
+
+    void Object_cleanup_points(Point* pointsToClean) {
+        if (pointsToClean) {
+            delete[] pointsToClean;
+        }
+    }
+
+    void Object_cleanup_object(Object* objectToClean) {
+        printf("cleanup_object called\n");
         if (objectToClean) {
+            Object_cleanup_points(objectToClean->points);
             delete objectToClean;
         }      
     }
 
-    void Object_cleanup_ArrayPoint(Object* objectToClean) {
-        printf("cleanup_ArrayPoint called\n");
-        if (objectToClean) {
-            delete[] objectToClean;
+    void Object_cleanup_ArrayObject(Object* objectsToClean) {
+        printf("cleanup_ArrayObject called\n");
+        if (objectsToClean) {
+            for(std::size_t objs=0; objs < 3; ++objs) {
+                Object_cleanup_points(objectsToClean[objs].points);
+            }
+
+            delete[] objectsToClean;
         }      
-    }        
+    }    
 }
