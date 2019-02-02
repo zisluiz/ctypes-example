@@ -18,5 +18,3 @@ Files to study: object.cpp, point.cpp, object.py
 
     g++ -shared -fPIC *.cpp -o object.so
     python object.py
-
-About free allocated memory, im not sure if arrays are setting free properly (to be study).
